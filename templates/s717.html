@@ -1,0 +1,143 @@
+{% extends 'base.html' %}
+
+{% block title %}Swaraj 717{% endblock title%}
+
+{% block styles %}
+<style>
+  /* Styles for the tractor images */
+  .tractor-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.3s ease-in-out;
+  }
+
+  /* Styles for the tractor color buttons */
+  .color-button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  /* Styles for the active tractor color button */
+  .color-button.active {
+    border: 1px solid #000;
+  }
+
+  /* Styles for the table */
+  table {
+    width: 50%;
+    margin: 30px auto;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+{% endblock  %}
+
+{% block body %}
+
+  <h1 align="center">Swaraj 717</h1>
+  <p>Swaraj 717 is the latest value-for-money offering from Swaraj in the sub-20hp (14.91 kW) category. This best-in-class tractor redefines a farmer’s life. It offers solid performance in using implements like rotavator, cultivator, spraying, haulage, sowing, reaper, threshing and across multiple crops like grapes, groundnut, cotton, castor etc. It is easy to maintain and highly reliable to use.</p>
+
+  <div class="tractor-image" id="tractor-image">
+    <!-- Default image -->
+    <div style="background-image: url('https://i.imgur.com/jMvRYHx.png')"></div>
+  </div>
+  <div class="item-box" </div>
+
+  <div style="display: flex; justify-content: center;">
+    <div class="color-button active" style="background-color: #fff" onclick="changeImage('https://i.imgur.com/jMvRYHx.png')"></div>
+    <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png')"></div>
+    <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png')"></div>
+  </div>
+  <div align="center" ><img src ="static/717.jpg"> </div>
+
+
+  <h2 >Specifications</h2>
+
+  <table  border="1" style="border-collapse: collapse;" margin="50" padding="50">
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">No. of Cylinder</th>
+      <td style="padding: 10px;">1</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Engine</th>
+      <td style="padding: 10px;">Displacement: 725cc</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Power</th>
+      <td style="padding: 10px;">11.18 kW (15 HP) at 2300 rpm</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Transmission</th>
+      <td style="padding: 10px;">8 Forward + 2 Reverse</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Brakes</th>
+      <td style="padding: 10px;">Dry Disc Brakes</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Clutch</th>
+      <td style="padding: 10px;">Single clutch, Diaphragm type</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">PTO</th>
+      <td style="padding: 10px;">Non-Independent, 6 splines PTO at 540 rpm</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Hydraulics</th>
+      <td style="padding: 10px;">Lift capacity: 780 kgf at lower link ends</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Fuel Tank Capacity</th>
+      <td style="padding: 10px;">19 Litres</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Dimensions</th>
+      <td style="padding: 10px;">Length: 2,750 mm, Width: 1,120 mm, Height: 1,320 mm</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Wheelbase</th>
+      <td style="padding: 10px;">1,650 mm</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Tyre Size</th>
+      <td style="padding: 10px;">Front Tyre: 5.00 x 15, Rear Tyre: 8.0 x 18</td>
+    </tr>
+    
+  </table>
+  
+          <script>
+            // Function to change the tractor image based on the color button clicked
+            function changeImage(imageUrl) {
+              document.getElementById("tractor-image").style.backgroundImage = "url('" + imageUrl + "')";
+              // Remove active class from all color buttons
+              var colorButtons = document.getElementsByClassName("color-button");
+              for (var i = 0; i < colorButtons.length; i++) {
+                colorButtons[i].classList.remove("active");
+              }
+              // Add active class to the clicked color button
+              event.target.classList.add("active");
+            }
+          </script>
+          <div class="item-box" style="background-image: url(https://www.swarajtractors.com/sites/default/files/images/Swaraj%20Tractors_717_633x512.png)"></div>
+          {% endblock body %}
+

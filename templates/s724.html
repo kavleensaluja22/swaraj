@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %}Swaraj724 FE{% endblock title%}
+
+{% block styles %}
+<style>
+  /* Styles for the tractor images */
+  .tractor-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: background-image 0.3s ease-in-out;
+  }
+
+  /* Styles for the tractor color buttons */
+  .color-button {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  /* Styles for the active tractor color button */
+  .color-button.active {
+    border: 1px solid #000;
+  }
+
+  /* Styles for the table */
+  table {
+    width: 50%;
+    margin: 30px auto;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+</style>
+{% endblock  %}
+
+{% block body %}
+
+  <h1 align="center">Swaraj 724</h1>
+  <p>The 724 XM Orchard NT is a 18.64-22.37 kW (25-30hp) category tractor. It is fitted with powerful & fuel efficient two-cylinder water-cooled engine. Its outer to outer width has been narrowed to 1092 mm which makes it highly suitable for inter-cultivation & orchard operations. The 724 XM Orchard NT comes equipped with host of features like power steering with separate steering oil tank, oil immersed brakes that provide operator comfort & safety etc. It is suitable for PTO driven implements like sprayer, rotavator etc. as it comes with a 540 r/min PTO. The adjustable check chains provided in it help in preventing crop damage.</p>
+
+  <div class="tractor-image" id="tractor-image">
+    <!-- Default image -->
+    <div style="background-image: url('https://i.imgur.com/jMvRYHx.png')"></div>
+  </div>
+  <div class="item-box" </div>
+
+  <div style="display: flex; justify-content: center;">
+    <div class="color-button active" style="background-color: #fff" onclick="changeImage('https://i.imgur.com/jMvRYHx.png')"></div>
+    <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png')"></div>
+    <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png')"></div>
+  </div>
+  <div align="center" ><img src ="static/724.jpg"> </div>
+
+
+  <h2 >Specifications</h2>
+
+  <table  border="1" style="border-collapse: collapse;" margin="50" padding="50">
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">No. of Cylinder</th>
+      <td style="padding: 10px;">2</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Engine</th>
+      <td style="padding: 10px;">Displacement: 1824 cm 3</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Power</th>
+      <td style="padding: 10px;">18.64-22.37 kW (25-30 HP)</td>
+    </tr>
+    
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Brakes</th>
+      <td style="padding: 10px;">Brake Type Standard Oil Immersed Brakes
+        Brake Type Optional NA</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Clutch</th>
+      <td style="padding: 10px;">Clutch Standard Single dry friction plate (Diaphragm type)
+        Clutch Optional NA</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">PTO</th>
+      <td style="padding: 10px;">PTO Speed: Standard 540 r/min
+        PTO Speed: Optional NA</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Hydraulics</th>
+      <td style="padding: 10px;">Live Hydraulics Live Hydraulics A) Position control: To hold lower links at any desired height. B) Automatic draft control : To maintain uniform depth c) Mix Control : For optimum field output
+        Lifting Capacity 1000 kg at lower link ends.
+        Linkage 3 point linkage suitable for Category- I&II type implements pins</td>
+    </tr>
+   
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Tyre Size</th>
+      <td style="padding: 10px;">Front Tyre: 5.00 x 15, Rear Tyre: 9.5  x 24</td>
+    </tr>
+    
+  </table>
+  
+          <script>
+            // Function to change the tractor image based on the color button clicked
+            function changeImage(imageUrl) {
+              document.getElementById("tractor-image").style.backgroundImage = "url('" + imageUrl + "')";
+              // Remove active class from all color buttons
+              var colorButtons = document.getElementsByClassName("color-button");
+              for (var i = 0; i < colorButtons.length; i++) {
+                colorButtons[i].classList.remove("active");
+              }
+              // Add active class to the clicked color button
+              event.target.classList.add("active");
+            }
+          </script>
+          <div class="item-box" style="background-image: url(https://www.swarajtractors.com/sites/default/files/images/Swaraj%20Tractors_717_633x512.png)"></div>
+          {% endblock body %}
