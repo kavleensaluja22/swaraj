@@ -1,3 +1,5 @@
+
+
 {% extends 'base.html' %}
 
 {% block title %} Home {% endblock title %}
@@ -5,37 +7,47 @@
 
 {% block body %}
 <style>
-  .login_popup {
+
+.contact-modal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-  }
-  
-  .login_popup .box {
+}
+
+.modal-container {
+    position: relative;
+}
+
+.modal-form {
     background-color: white;
     padding: 30px;
     border-radius: 10px;
-  }
-  
-  .login_popup .box h1 {
+    position: relative;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-form h1 {
     font-size: 24px;
     margin-bottom: 20px;
-  }
-  
-  .login_popup .box label {
+    text-align: center;
+}
+
+.modal-form label {
     display: block;
     font-size: 18px;
     margin-bottom: 10px;
-  }
-  
-  .login_popup .box .popup_input {
+    font-weight: 500;
+}
+
+.form-input {
     width: 100%;
     height: 40px;
     padding: 10px;
@@ -43,388 +55,529 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     margin-bottom: 20px;
-  }
-  
-  .login_popup .box button {
+    box-sizing: border-box;
+}
+
+.submit-button {
     width: 100%;
     height: 40px;
-    /* background-color: blue; */
+    background-color: #007bff;
     color: white;
     font-size: 16px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  /* .login_popup .box button:hover {
-    background-color: darkblue;
-  } */
-  
-  .login_popup .box .close {
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+.close-button {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 15px;
     font-size: 24px;
     cursor: pointer;
-  }
+    background: none;
+    border: none;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button:hover {
+    color: #000;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.address-label {
+    margin-top: 20px;
+}
+
+/* Hero Section */
+.hero-section {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f8f9fa;
+}
+
+.hero-title {
+    color: green;
+    font-family: 'Chaparral Pro Light', serif;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.hero-subtitle {
+    color: black;
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+/* Marketing Container */
+.marketing-container {
+    padding: 60px 15px;
+}
+
+/* Products Showcase */
+.products-showcase {
+    margin-bottom: 60px;
+}
+
+.product-card {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.product-image {
+    margin-bottom: 20px;
+    object-fit: cover;
+}
+
+.product-title {
+    font-weight: normal;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.product-features {
+    text-align: left;
+}
+
+.product-features p {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-features ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.product-features li {
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.product-features li:before {
+    content: "(i)";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+.product-features li:nth-child(2):before {
+    content: "(ii)";
+}
+
+.product-features li:nth-child(3):before {
+    content: "(iii)";
+}
+
+.product-features li:nth-child(4):before {
+    content: "(iv)";
+}
+
+.product-features li:nth-child(5):before {
+    content: "(v)";
+}
+
+/* Video Section */
+.video-section {
+    text-align: center;
+    margin: 40px 0;
+}
+
+.promotional-video {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Tractor Models Section */
+.tractor-models {
+    margin-top: 40px;
+}
+
+.section-divider {
+    margin: 40px 0;
+    border-color: #dee2e6;
+}
+
+.tractor-feature {
+    margin: 60px 0;
+    align-items: center;
+}
+
+.tractor-heading {
+    font-weight: normal;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+.tractor-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #666;
+}
+
+.tractor-image {
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.details-button {
+    margin-top: 15px;
+}
+
+/* Footer */
+.site-footer {
+    padding: 40px 0;
+    border-top: 1px solid #dee2e6;
+    margin-top: 60px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .product-title {
+        font-size: 1.3rem;
+    }
+
+    .tractor-heading {
+        font-size: 1.5rem;
+    }
+
+    .promotional-video {
+        width: 100%;
+        height: 250px;
+    }
+
+    .modal-form {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .modal-form h1 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section {
+        padding: 40px 15px;
+    }
+
+    .marketing-container {
+        padding: 40px 15px;
+    }
+
+    .tractor-feature {
+        margin: 40px 0;
+    }
+}
+
   
 </style>
    
 
-<div class="login_popup" id="popup_form" style="display:none">
-  <div class="box">
-    <div class="form">
-      <div class="close" id="close_btn" onclick="closeModal()">&#10005;</div>
-  
-      <h1>CONTACT TO KNOW MORE</h1>
-      <form id="otp-form" method="POST" >
-        {% csrf_token %}
-        <label for="name">Enter Name:</label>
-        <input type="text" name="name" id="name" class="popup_input" required>
-        <div class="row">
-          <div class="col-md-8 ">
-            
-            <label for="phone_number">Phone Number:</label>
-            <input type="text"   name="phone_number"  placeholder="8569xxxxxx" id="phone_number" class="popup_input"  required>
-          </div>
-       
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Swaraj Tractors</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Contact Modal Popup -->
+    <div class="contact-modal" id="popup_form" style="display:none">
+        <div class="modal-container">
+            <div class="modal-form">
+                <button class="close-button" id="close_btn" onclick="closeModal()">&#10005;</button>
+                <h1>CONTACT TO KNOW MORE</h1>
+                <form id="contact-form" method="POST">
+                  {% csrf_token %}
+                    <label for="name">Enter Name:</label>
+                    <input type="text" name="name" id="name" class="form-input" required>
 
-          <div class="col-md-4 mt-4" style="margin-top:38px !important">
-            <button onclick="sendOTP()" type="button" class="btn btn-success">Send</button>
-          </div>
-         
-        </div>
-      
-      <div id="otp_box" style="display:none">
-        <div class="row">
-          <div class="col-md-8">
-        <label for="phone_number">Enter OTP:</label>
-        <input type="text" id="entered_otp" class="form-control"  aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group">
+                        <label for="phone_number">Phone Number:</label>
+                        <input type="text" name="phone_number" placeholder="8569xxxxxx" id="phone_number" class="form-input" required>
+                    </div>
+
+                    <label for="address" class="address-label">Address:</label>
+                    <input type="text" name="address" id="address" class="form-input" required>
+
+                    <button type="submit" class="submit-button" onclick="setModalValue()">Submit</button>
+                </form>
             </div>
-
-        <div class="col-md-4 mt-4" style="margin-top:38px !important">
-          <button onclick="checkOTP()" type="button" class="btn btn-danger">Check</button>
         </div>
-       
-
-      </div>
-      </div>  
-       
-
-        <label for="Address" class="mt-4">Address:</label>
-        <input type="text" name="address" id="address" class="popup_input" required>
-
-
-        <button type="submit" class="btn btn-primary" disabled  onclick="setModalValue()" id="submit_btn">Submit</button>
-      </form>
     </div>
-  </div>
-</div>
 
+    <main>
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <h1 class="hero-title">Crafted By The Hands Of Farmers, With The Needs Of Farmers In Mind.</h1>
+            <h6 class="hero-subtitle">What makes Swaraj tractors stand apart is that majority of our engineers are from a farming background.</h6>
+        </section>
 
-<script>
+        <!-- Marketing Container -->
+        <div class="container marketing-container">
+            <!-- Combine Harvesters Section -->
+            <section class="products-showcase">
+                <div class="row">
+                    <article class="col-lg-4 product-card">
+                        <img src="static/8100.jpg" class="product-image rounded-circle" width="140" height="140" alt="Swaraj 8100 EX Combine Harvester">
+                        <h2 class="product-title">SWARAJ 8100 EX SELF-PROPELLED COMBINE HARVESTER</h2>
+                        <div class="product-features">
+                            <p>Features:</p>
+                            <ul>
+                                <li>Operator comfort due to less vibration</li>
+                                <li>Minimum grain loss due to more straw walkers and sieve area</li>
+                                <li>Provision of 2 blower speed for better cleaning adjustment</li>
+                                <li>More fuel efficient</li>
+                                <li>More ground clearance and less turning radius</li>
+                            </ul>
+                        </div>
+                    </article>
 
-window.onload = function() {
-  console.log('Page Loaded')
+                    <article class="col-lg-4 product-card">
+                        <img src="static/7060.jpg" class="product-image rounded-circle" width="140" height="140" alt="Pro Combine 7060 Track Harvester">
+                        <h2 class="product-title">PRO COMBINE 7060 TRACK HARVESTER</h2>
+                        <div class="product-features">
+                            <p>Features:</p>
+                            <ul>
+                                <li>Rugged, reliable, more powerful & fuel-efficient Mahindra 805 Di engine</li>
+                                <li>Threshing – TAF type, grain loss is minimal</li>
+                                <li>Minimum grain breakage</li>
+                                <li>Footrest provided above discharge tube</li>
+                                <li>New paddy cutter bar for efficient cutting of sleeping crop</li>
+                            </ul>
+                        </div>
+                    </article>
 
-  setTimeout(()=>{
-       var formFilled = localStorage.getItem('formFilled') 
-      if(!formFilled){
-        document.getElementById('popup_form').style.display = ''
-      }
-  }, 3000)
+                    <article class="col-lg-4 product-card">
+                        <img src="static/b525.jpg" class="product-image rounded-circle" width="140" height="140" alt="Swaraj B525 Tractor Mounted Combine Harvester">
+                        <h2 class="product-title">SWARAJ B525 TRACTOR MOUNTED COMBINE HARVESTER (TMCH)</h2>
+                        <div class="product-features">
+                            <p>Features:</p>
+                            <ul>
+                                <li>Very good cleaning of crop in Swaraj B 525</li>
+                                <li>Sturdy and strong design makes it long life product with low maintenance</li>
+                                <li>Minimum grain breakage</li>
+                                <li>Cost effective and affordable to farmers</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </section>
 
-}; 
- 
+            <!-- Video Section -->
+            <section class="video-section">
+                <video class="promotional-video" width="1300" height="440" controls>
+                    <source src="static/k.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </section>
 
-let sent_otp = ''
+            <hr>
 
-function setModalValue(){
-  localStorage.setItem('formFilled' , true)
-} 
+            <!-- Tractor Models Section -->
+            <section class="tractor-models">
+                <hr class="section-divider">
 
+                <article class="row tractor-feature">
+                    <div class="col-md-7">
+                        <h2 class="tractor-heading">SWARAJ 717</h2>
+                        <p class="tractor-description">Swaraj 717 is the latest value-for-money offering from Swaraj in the sub-20hp (14.91 kW) category. This best-in-class tractor redefines a farmer's life. It offers solid performance in using implements like rotavator, cultivator, spraying, haulage, sowing, reaper, threshing and across multiple crops like grapes, groundnut, cotton, castor etc. It is easy to maintain and highly reliable to use.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="static/717.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 717 Tractor">
+                        <p><a class="btn btn-secondary details-button" href="/s717">View details &raquo;</a></p>
+                    </div>
+                </article>
 
-function closeModal(){
-  document.getElementById('popup_form').style.display = 'none'
-}
+                <hr class="section-divider">
 
-function phonenumber(inputtxt) {
-  var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
-  if(inputtxt.match(phoneno)) {
-    return true;
-  }
-  else {
-    
-    return false;
-  }
-}
+                <article class="row tractor-feature">
+                    <div class="col-md-7 order-md-2">
+                        <h2 class="tractor-heading">SWARAJ 724 XM</h2>
+                        <p class="tractor-description">724 XM Orchard NT is a 18.64-22.37 kW (25-30hp) category tractor. It is fitted with powerful & fuel efficient two-cylinder water-cooled engine. Its outer to outer width has been narrowed to 1092 mm which makes it highly suitable for inter-cultivation & orchard operations.</p>
+                    </div>
+                    <div class="col-md-5 order-md-1">
+                        <img src="static/724.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 724 XM Tractor">
+                        <a class="btn btn-secondary details-button" href="/s724">View details &raquo;</a>
+                    </div>
+                </article>
 
-function checkOTP(){
-    var entered_otp = document.getElementById('entered_otp')
-    console.log(sent_otp)
-    console.log(entered_otp.value)
-    if(entered_otp.value == sent_otp){
-        document.getElementById('submit_btn').disabled = false
-      document.getElementById('otp_box').style.display = 'none'
+                <hr class="section-divider">
 
-    }else{
-      alert('You have entered wrong OTP')
-      entered_otp.value = ''
-      
-     
+                <article class="row tractor-feature">
+                    <div class="col-md-7">
+                        <h2 class="tractor-heading">SWARAJ 735 FE</h2>
+                        <p class="tractor-description">735 FE is the most preferred model in the farming community. A front-runner, this 26.09 – 29.82 kW (35-40hp) category tractor is powered by a powerful & fuel efficient water-cooled 3-cylinder engine. This tractor is highly suitable for agriculture usage like cultivator, rotavator, thresher etc. It comes equipped with host of features like power steering, oil immersed brakes and bigger rear tyres that provide comfortable driving. Long life, low maintenance costs & better ergonomics of this tractor make it amongst the most sought after tractor by the farming community.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="static/735.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 735 FE Tractor">
+                        <a class="btn btn-secondary details-button" href="/s735">View details &raquo;</a>
+                    </div>
+                </article>
 
-    }
-}
+                <hr class="section-divider">
 
+                <article class="row tractor-feature">
+                    <div class="col-md-7 order-md-2">
+                        <h2 class="tractor-heading">SWARAJ 744 FE (2WD/4WD)</h2>
+                        <p class="tractor-description">Swaraj 744 FE is a 33.55 – 37.28 kW (45-50hp) category tractor which provides real value for money to its owners. It is fitted with a powerful & fuel efficient 3-cylinder water-cooled engine. It comes with multi speed forward and reverse PTO which makes it highly fuel efficient on PTO driven applications like alternator thresher and reaper. The tractor is equipped with host of features like power steering, dual clutch, DCV and adjustable front-axle. Overall, a powerful all-rounder and an excellent performer.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="static/744fe.jpeg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 744 FE Tractor">
+                        <p><a class="btn btn-secondary details-button" href="/s744">View details &raquo;</a></p>
+                    </div>
+                </article>
 
-function sendOTP(){
-  
-  var phone_number = document.getElementById('phone_number')
-  if(!phonenumber(phone_number.value)){
-    alert('Enter a valid phone number!')
-    phone_number.value = ''
-  }else{
-    var url = `http://127.0.0.1:8000/send_otp_to_phone_number/+91${phone_number.value}/`
-    
+                <hr class="section-divider">
 
-    fetch(url)
-    .then(response => response.json())
-    .then(result => {
-      console.log(result)
-      sent_otp = result.data.otp
-    })
+                <article class="row tractor-feature">
+                    <div class="col-md-7">
+                        <h2 class="tractor-heading">SWARAJ 744 XT (2WD/4WD)</h2>
+                        <p class="tractor-description">Swaraj 744 XT comes with all new powerful and fuel efficient engine with highest displacement and torque in its category. With features like Directional control valve and 1700 kg lift capacity, it works efficiently with implements such as laser leveler, MB Plough and Tipping trolley.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="static/xt.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 744 XT Tractor">
+                        <p><a class="btn btn-secondary details-button" href="/xt">View details &raquo;</a></p>
+                    </div>
+                </article>
 
-    document.getElementById('otp_box').style.display = ''
+                <hr class="section-divider">
 
-  }
+                <article class="row tractor-feature">
+                    <div class="col-md-7 order-md-2">
+                        <h2 class="tractor-heading">SWARAJ 855 FE (2WD/4WD)</h2>
+                        <p class="tractor-description">The Swaraj 855 tractor is a 52 HP tractor and has 3 Cylinders, which are built for optimum longevity. In addition to this, Swaraj 855 has 3308 cc engine which makes this tractor good for Indian farmers. Swaraj Tractor 855 also has an oil bath type air filter and water cooled engine which provides smooth operation of the tractor in the field. Swaraj tractor 855 pto hp is 42.9 hp</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="static/855.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 855 FE Tractor">
+                        <p><a class="btn btn-secondary details-button" href="/s855">View details &raquo;</a></p>
+                    </div>
+                </article>
 
-}
+                <hr class="section-divider">
 
-</script>
+                <article class="row tractor-feature">
+                    <div class="col-md-7">
+                        <h2 class="tractor-heading">SWARAJ 963 FE (2WD/4WD)</h2>
+                        <p class="tractor-description">Swaraj 963 FE is the best option for the farmers who want to start commercial farming. This tractor is built with advanced technologies that make it best for farming. Swaraj 963 FE always lives up to the expectations of the farmers and fulfill all their farming requirements. It helps you by completing all the farming tasks. Swaraj 963 FE is equipped with many great features and technical specifications. It is one of the most reliable tractors and is among the top models of Swaraj. Moreover, this tractor is packed with modern technologies integrated with advanced engineering to deliver efficient work.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="static/963.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 963 FE Tractor">
+                        <p><a class="btn btn-secondary details-button" href="/s963">View details &raquo;</a></p>
+                    </div>
+                </article>
 
+                <hr class="section-divider">
 
+                <article class="row tractor-feature">
+                    <div class="col-md-7 order-md-2">
+                        <h2 class="tractor-heading">SWARAJ 969 FE (2WD/4WD)</h2>
+                        <p class="tractor-description">The tractor comes with 65 HP. Swaraj 969 FE engine capacity provides efficient mileage on the field. The Swaraj 969 FE is one of the powerful tractors and offers good mileage. The 969 FE Tractor has a capability to provide high performance on the field. Swaraj 969 FE comes with super power which is fuel efficient.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="static/969.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 969 FE Tractor">
+                        <p><a class="btn btn-secondary details-button" href="/s969">View details &raquo;</a></p>
+                    </div>
+                </article>
 
-  <br>
-      <h1 style="text-align:center; color:green; font-family:Chaparral Pro Light;"> Crafted By The Hands Of Farmers, With The Needs Of Farmers In Mind.</h1> 
-     <h6 style="text-align:center; color:black;">What makes Swaraj tractors stand apart is that majority of our engineers are from a farming background.</h6>
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-   <br>
-    <div class="container marketing">
-  
-      <!-- Three columns of text below the carousel -->
-      <div class="row">
-        
-        <div class="col-lg-4">
-          <img src="static/8100.jpg" svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"></text></svg>
-          <h2 class="fw-normal">FSWARAJ 8100 EX SELF-PROPELLED COMBINE HARVESTER</h2>
-          <pre><p>        Features:
+                <hr class="section-divider">
 
-  (i)Operator comfort due to less vibration
-  (ii)Minimum grain loss due to more straw walkers and sieve area
-  (iii)Provision of 2 blower speed for better cleaning adjustment
-  (iv)More fuel efficient
-  (v)More ground clearance and less turning radius
-          </p></pre>
-          {% comment %} <p><a class="btn btn-secondary" href="/combine1">View details &raquo;</a></p> {% endcomment %}
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img src="static/7060.jpg" svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img"  preserveAspectRatio="xMidYMid slice" focusable="false"><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"></text></svg>
-          <h2 class="fw-normal">PRO COMBINE 7060 TRACK HARVESTER</h2>
-          
-          <pre>
-          <p>          Features:
+                <article class="row tractor-feature">
+                    <div class="col-md-7">
+                        <h2 class="tractor-heading">SWARAJ 733 FE</h2>
+                        <p class="tractor-description">Swaraj 733 FE engine capacity is one to be noted in its great specifications. Swaraj 733 FE tractor in India 2023 is the best known and much recognized in the space of having qualified and sound tractors.</p>
+                    </div>
+                    <div class="col-md-5">
+                        <img src="static/733.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 733 FE Tractor">
+                        <p><a class="btn btn-secondary details-button" href="/s733">View details &raquo;</a></p>
+                    </div>
+                </article>
 
-
-  (i)Rugged, reliable, more powerful & fuel-efficient Mahindra 805 Di engine
-  (ii)Threshing – TAF type, grain loss is minimal
-  (iii)Minimum grain breakage
-  (iv)Footrest provided above discharge tube
-  (v)New paddy cutter bar for efficient cutting of sleeping crop</p>
-{% comment %} <p><a class="btn btn-secondary" href="/combine2">View details &raquo;</a> {% endcomment %}
-          </p></pre>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-          <img src="static/b525.jpg" svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 140x140" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#777"/><text x="50%" y="50%" fill="#777" dy=".3em"></text></svg>
-          <h2 class="fw-normal">SWARAJ B525 TRACTOR MOUNTED COMBINE HARVESTER (TMCH)</h2>
-          <pre><p>               Features:
-
-(i)Very good cleaning of crop in Swaraj B 525
-(ii)Sturdy and strong design makes it long life product with low maintenance
-(iii)Minimum grain breakage
-(iv)Cost effective and affordable to farmers</p>
-      {% comment %} <p><a class="btn btn-secondary" href="/combine3">View details &raquo;</a> {% endcomment %}
-      </p></pre>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-  
-  <br>
-
-  <video width="1300" height="440" controls>
-    <source src="static/k.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-   
-
-  
-  
-
-  <hr>
-      <!-- START THE FEATURETTES -->
-  
-      <hr class="featurette-divider">
-  
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ 717 <span class="text-muted"></span></h2>
-          <p class="lead">Swaraj 717 is the latest value-for-money offering from Swaraj in the sub-20hp (14.91 kW) category. This best-in-class tractor redefines a farmer’s life. It offers solid performance in using implements like rotavator, cultivator, spraying, haulage, sowing, reaper, threshing and across multiple crops like grapes, groundnut, cotton, castor etc. It is easy to maintain and highly reliable to use.</p>
+                <hr class="section-divider">
+            </section>
         </div>
-        <div class="col-md-5">
-          <img src ="static/717.jpg"svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <p><a class="btn btn-secondary" href="/s717">View details &raquo;</a></p>
-        </div>
-      </div>
-  
-      <hr class="featurette-divider">
-  
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ724 XM  <span class="text-muted"></span></h2>
-          <p class="lead">724 XM Orchard NT is a 18.64-22.37 kW (25-30hp) category tractor. It is fitted with powerful & fuel efficient two-cylinder water-cooled engine. Its outer to outer width has been narrowed to 1092 mm which makes it highly suitable for inter-cultivation & orchard operations.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <img src="static/724.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <a class="btn btn-secondary" href="/s724">View details &raquo;</a>
-        </div>
-      </div>
-  
-      <hr class="featurette-divider">
-  
-      <div class="row featurette">
-        <div class="col-md-7 ">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ735 FE<span class="text-muted"></span></h2>
-          <p class="lead">735 FE is the most preferred model in the farming community. A front-runner, this 26.09 – 29.82 kW (35-40hp) category tractor is powered by a powerful & fuel efficient water-cooled 3-cylinder engine. This tractor is highly suitable for agriculture usage like cultivator, rotavator, thresher etc. It comes equipped with host of features like power steering, oil immersed brakes and bigger rear tyres that provide comfortable driving. Long life, low maintenance costs & better ergonomics of this tractor make it amongst the most sought after tractor by the farming community.</p>
-        </div>
-        <div class="col-md-5">
-          <img src="static/735.jpg"class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <a class="btn btn-secondary" href="/s735">View details &raquo;</a>
-        </div>
-      </div>
-  
-      <hr class="featurette-divider">
 
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ744 FE (2wd/4wd)<span class="text-muted"></span></h2>
-          <p class="lead">Swaraj 744 FE is a 33.55 – 37.28 kW (45-50hp) category tractor which provides real value for money to its owners. It is fitted with a powerful & fuel efficient 3-cylinder water-cooled engine. It comes with multi speed forward and reverse PTO which makes it highly fuel efficient on PTO driven applications like alternator thresher and reaper. The tractor is equipped with host of features like power steering, dual clutch, DCV and adjustable front-axle. Overall, a powerful all-rounder and an excellent performer.</p>
-        </div>
-        <div class="col-md-5">
-          <img src="static/744fe.jpeg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <p><a class="btn btn-secondary" href="/s744">View details &raquo;</a></p>
-        </div>
-      </div>
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7 ">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ744 XT (2wd/4wd)<span class="text-muted"></span></h2>
-          <p class="lead">Swaraj 744 XT comes with all new powerful and fuel efficient engine with highest displacement and torque in its category. With features like Directional control valve and 1700 kg lift capacity, it works efficiently with implements such as laser leveler, MB Plough and Tipping trolley.</p>
-        </div>
-        <div class="col-md-5">
-          <img src="static/xt.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <p><a class="btn btn-secondary" href="/xt">View details &raquo;</a></p>
-        </div>
-      </div>
+        <!-- Footer -->
+        <footer class="container site-footer">
+            <p class="float-end"><a href="/">Back to top</a></p>
+        </footer>
+    </main>
 
-      <hr class="featurette-divider">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        window.onload = function () {
+            console.log('Page Loaded');
 
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ855 FE (2wd/4wd) <span class="text-muted"></span></h2>
-          <p class="lead">The Swaraj 855 tractor is a 52 HP tractor and has 3 Cylinders, which are built for optimum longevity. In addition to this, Swaraj 855 has 3308 cc engine which makes this tractor good for Indian farmers.
+            setTimeout(() => {
+                var formFilled = localStorage.getItem('formFilled');
+                if (!formFilled) {
+                    document.getElementById('popup_form').style.display = 'flex';
+                }
+            }, 3000);
+        };
 
-            Swaraj Tractor 855 also has an oil bath type air filter and water cooled engine which provides smooth operation of the tractor in the field. Swaraj tractor 855 pto hp is 42.9 hp</h4></p>
-        </div>
-        <div class="col-md-5">
-          <img src="static/855.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <p><a class="btn btn-secondary" href="/s855">View details &raquo;</a></p>
-        </div>
-      </div>
-  
-      <hr class="featurette-divider">
-      <div class="row featurette">
-        <div class="col-md-7 ">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ963 fE (2wd/4wd)<span class="text-muted"></span></h2>
-          <p class="lead">Swaraj 963 FE is the best option for the farmers who want to start commercial farming. This tractor is built with advanced technologies that make it best for farming. Swaraj 963 FE always lives up to the expectations of the farmers and fulfill all their farming requirements. It helps you by completing all the farming tasks. Swaraj 963 FE is equipped with many great features and technical specifications. It is one of the most reliable tractors and is among the top models of Swaraj. Moreover, this tractor is packed with modern technologies integrated with advanced engineering to deliver efficient work. So, scroll down a bit further and find out all about Swaraj 963 FE 2WD price and specifications.</h4></p>
-        </div>
-        <div class="col-md-5">
-          <img src="static/963.jpg"class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <p><a class="btn btn-secondary" href="/s963">View details &raquo;</a></p>
-        </div>
-      </div>
-  
-      <hr class="featurette-divider">
+        function setModalValue() {
+            localStorage.setItem('formFilled', true);
+        }
 
-      
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ969 FE (2wd/4wd) <span class="text-muted"></span></h2>
-          <p class="lead">The tractor comes with 65 HP. Swaraj 969 FE engine capacity provides efficient mileage on the field. The Swaraj 969 FE is one of the powerful tractors and offers good mileage. The 969 FE Tractor has a capability to provide high performance on the field. Swaraj 969 FE comes with super power which is fuel efficient.</p>
-        </div>
-        <div class="col-md-5">
-          <img src="static/969.jpg" class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <p><a class="btn btn-secondary" href="/s969">View details &raquo;</a></p>
-        </div>
-      </div>
-  
-      
-  
-      <hr class="featurette-divider">
+        function closeModal() {
+            document.getElementById('popup_form').style.display = 'none';
+        }
 
-      
-      <div class="row featurette">
-        <div class="col-md-7  ">
-          <h2 class="featurette-heading fw-normal lh-1">SAWRAJ733 FE<span class="text-muted"></span></h2>
-          <p class="lead">Swaraj 733 FE engine capacity is one to be noted in its great specifications. 
-            Swaraj 733 FE tractor in India 2023 is the best known and much recognized in the space of having qualified and sound tractors. 
-           </p>
-        </div>
-        <div class="col-md-5">
-          <img src="/static/733.jpg"  class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"/><text x="50%" y="50%" fill="#aaa" dy=".3em"></text></svg>
-          <p><a class="btn btn-secondary" href="/s733">View details &raquo;</a></p>
-        </div>
-      </div>
-  
-      <hr class="featurette-divider">
-  
-      <!-- /END THE FEATURETTES -->
-  
-    </div><!-- /.container -->
-  
-  
-    <!-- FOOTER -->
-    <footer class="container">
-      <p class="float-end"><a href="/">Back to top</a></p>
-   
-    </footer>
-  </main>
-  
-  
-      
-      
-     
-       <!--JavaScript code to the bottom -->  
-    
-      </div>     
-    
-  
-  
-  </div> 
-  
-  </html>
+        function phonenumber(inputtxt) {
+            var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+            return phoneno.test(inputtxt);
+        }
+
+        function submitPhoneNumber() {
+            var phone_number = document.getElementById('phone_number');
+
+            if (!phonenumber(phone_number.value)) {
+                alert('Enter a valid phone number!');
+                phone_number.value = '';
+                return;
+            }
+
+            var url = `http://127.0.0.1:8000/save_phone_number/+91${phone_number.value}/`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    console.log('Phone number saved:', result);
+                    setModalValue();
+                    closeModal();
+                })
+                .catch(error => {
+                    console.error('Error saving phone number:', error);
+                });
+        }
+    </script>
+</body>
+</html>
+
   {% endblock %} 

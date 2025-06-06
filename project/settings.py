@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -124,17 +125,25 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-    
-]
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]  # For local static files
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    # For collectstatic (production)
+print("STATIC_ROOT =", STATIC_ROOT)
+
+MEDIA_URL = '/media/'
+# MEDIA_ROOT ="Desktop/swaraj/media"
+print("MEDIA_ROOT =", MEDIA_ROOT)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-ACCOUNT_SID='AC2dd2d7696a8b5c24627cbe7807030029'
-AUTH_TOKEN='2f92b57e0f63522bb6cd3be1e1bced21'
+# ACCOUNT_SID='AC2dd2d7696a8b5c24627cbe7807030029'
+# AUTH_TOKEN='2f92b57e0f63522bb6cd3be1e1bced21'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-MEDIA_URL ='media/'
-MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+
+
