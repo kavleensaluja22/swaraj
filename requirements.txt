@@ -1,5 +1,7 @@
-google.generativeai
-pymupdf
-django
+Django>=4.1
 gunicorn
 whitenoise
+cloudinary
+django-cloudinary-storage
+pymupdf
+google-generativeai

@@ -1,3 +1,4 @@
+{% load static %}
 {% extends 'base.html' %}
 
 {% block title %}Swaraj855 FE{% endblock title%}
@@ -70,8 +71,8 @@
     <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png')"></div>
     <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png')"></div>
   </div>
-  <div align="center" ><img src ="static/855.jpg"> </div>
-
+  <div align="center" ><img src ="{% static '855.jpg' %}"> </div>
+ 
 
   <h2 >Specifications</h2>
 

@@ -1,5 +1,4 @@
-
-
+{% load static %}
 {% extends 'base.html' %}
 
 {% block title %} Home {% endblock title %}
@@ -344,7 +343,7 @@
             <section class="products-showcase">
                 <div class="row">
                     <article class="col-lg-4 product-card">
-                        <img src="static/8100.jpg" class="product-image rounded-circle" width="140" height="140" alt="Swaraj 8100 EX Combine Harvester">
+                        <img src="{% static '8100.jpg' %}" class="product-image rounded-circle" width="140" height="140" alt="Swaraj 8100 EX Combine Harvester">
                         <h2 class="product-title">SWARAJ 8100 EX SELF-PROPELLED COMBINE HARVESTER</h2>
                         <div class="product-features">
                             <p>Features:</p>
@@ -359,7 +358,7 @@
                     </article>
 
                     <article class="col-lg-4 product-card">
-                        <img src="static/7060.jpg" class="product-image rounded-circle" width="140" height="140" alt="Pro Combine 7060 Track Harvester">
+                        <img src="{% static '7060.jpg' %}" class="product-image rounded-circle" width="140" height="140" alt="Pro Combine 7060 Track Harvester">
                         <h2 class="product-title">PRO COMBINE 7060 TRACK HARVESTER</h2>
                         <div class="product-features">
                             <p>Features:</p>
@@ -374,7 +373,7 @@
                     </article>
 
                     <article class="col-lg-4 product-card">
-                        <img src="static/b525.jpg" class="product-image rounded-circle" width="140" height="140" alt="Swaraj B525 Tractor Mounted Combine Harvester">
+                        <img src="{% static 'b525.jpg' %}" class="product-image rounded-circle" width="140" height="140" alt="Swaraj B525 Tractor Mounted Combine Harvester">
                         <h2 class="product-title">SWARAJ B525 TRACTOR MOUNTED COMBINE HARVESTER (TMCH)</h2>
                         <div class="product-features">
                             <p>Features:</p>
@@ -392,7 +391,8 @@
             <!-- Video Section -->
             <section class="video-section">
                 <video class="promotional-video" width="1300" height="440" controls>
-                    <source src="static/k.mp4" type="video/mp4">
+                  
+                    <source src="{% static 'k.mp4' %}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </section>
@@ -409,7 +409,7 @@
                         <p class="tractor-description">Swaraj 717 is the latest value-for-money offering from Swaraj in the sub-20hp (14.91 kW) category. This best-in-class tractor redefines a farmer's life. It offers solid performance in using implements like rotavator, cultivator, spraying, haulage, sowing, reaper, threshing and across multiple crops like grapes, groundnut, cotton, castor etc. It is easy to maintain and highly reliable to use.</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="static/717.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 717 Tractor">
+                        <img src="{% static '717.jpg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 717 Tractor">
                         <p><a class="btn btn-secondary details-button" href="/s717">View details &raquo;</a></p>
                     </div>
                 </article>
@@ -422,7 +422,7 @@
                         <p class="tractor-description">724 XM Orchard NT is a 18.64-22.37 kW (25-30hp) category tractor. It is fitted with powerful & fuel efficient two-cylinder water-cooled engine. Its outer to outer width has been narrowed to 1092 mm which makes it highly suitable for inter-cultivation & orchard operations.</p>
                     </div>
                     <div class="col-md-5 order-md-1">
-                        <img src="static/724.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 724 XM Tractor">
+                        <img src="{% static '724.jpg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 724 XM Tractor">
                         <a class="btn btn-secondary details-button" href="/s724">View details &raquo;</a>
                     </div>
                 </article>
@@ -435,7 +435,7 @@
                         <p class="tractor-description">735 FE is the most preferred model in the farming community. A front-runner, this 26.09 – 29.82 kW (35-40hp) category tractor is powered by a powerful & fuel efficient water-cooled 3-cylinder engine. This tractor is highly suitable for agriculture usage like cultivator, rotavator, thresher etc. It comes equipped with host of features like power steering, oil immersed brakes and bigger rear tyres that provide comfortable driving. Long life, low maintenance costs & better ergonomics of this tractor make it amongst the most sought after tractor by the farming community.</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="static/735.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 735 FE Tractor">
+                        <img src="{% static '735.jpg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 735 FE Tractor">
                         <a class="btn btn-secondary details-button" href="/s735">View details &raquo;</a>
                     </div>
                 </article>
@@ -448,7 +448,7 @@
                         <p class="tractor-description">Swaraj 744 FE is a 33.55 – 37.28 kW (45-50hp) category tractor which provides real value for money to its owners. It is fitted with a powerful & fuel efficient 3-cylinder water-cooled engine. It comes with multi speed forward and reverse PTO which makes it highly fuel efficient on PTO driven applications like alternator thresher and reaper. The tractor is equipped with host of features like power steering, dual clutch, DCV and adjustable front-axle. Overall, a powerful all-rounder and an excellent performer.</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="static/744fe.jpeg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 744 FE Tractor">
+                        <img src="{% static '744fe.jpeg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 744 FE Tractor">
                         <p><a class="btn btn-secondary details-button" href="/s744">View details &raquo;</a></p>
                     </div>
                 </article>
@@ -461,7 +461,7 @@
                         <p class="tractor-description">Swaraj 744 XT comes with all new powerful and fuel efficient engine with highest displacement and torque in its category. With features like Directional control valve and 1700 kg lift capacity, it works efficiently with implements such as laser leveler, MB Plough and Tipping trolley.</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="static/xt.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 744 XT Tractor">
+                        <img src="{% static 'xt.jpg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 744 XT Tractor">
                         <p><a class="btn btn-secondary details-button" href="/xt">View details &raquo;</a></p>
                     </div>
                 </article>
@@ -474,7 +474,7 @@
                         <p class="tractor-description">The Swaraj 855 tractor is a 52 HP tractor and has 3 Cylinders, which are built for optimum longevity. In addition to this, Swaraj 855 has 3308 cc engine which makes this tractor good for Indian farmers. Swaraj Tractor 855 also has an oil bath type air filter and water cooled engine which provides smooth operation of the tractor in the field. Swaraj tractor 855 pto hp is 42.9 hp</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="static/855.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 855 FE Tractor">
+                        <img src="{% static '855.jpg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 855 FE Tractor">
                         <p><a class="btn btn-secondary details-button" href="/s855">View details &raquo;</a></p>
                     </div>
                 </article>
@@ -487,7 +487,7 @@
                         <p class="tractor-description">Swaraj 963 FE is the best option for the farmers who want to start commercial farming. This tractor is built with advanced technologies that make it best for farming. Swaraj 963 FE always lives up to the expectations of the farmers and fulfill all their farming requirements. It helps you by completing all the farming tasks. Swaraj 963 FE is equipped with many great features and technical specifications. It is one of the most reliable tractors and is among the top models of Swaraj. Moreover, this tractor is packed with modern technologies integrated with advanced engineering to deliver efficient work.</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="static/963.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 963 FE Tractor">
+                        <img src="{% static '963.jpg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 963 FE Tractor">
                         <p><a class="btn btn-secondary details-button" href="/s963">View details &raquo;</a></p>
                     </div>
                 </article>
@@ -500,7 +500,7 @@
                         <p class="tractor-description">The tractor comes with 65 HP. Swaraj 969 FE engine capacity provides efficient mileage on the field. The Swaraj 969 FE is one of the powerful tractors and offers good mileage. The 969 FE Tractor has a capability to provide high performance on the field. Swaraj 969 FE comes with super power which is fuel efficient.</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="static/969.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 969 FE Tractor">
+                        <img src="{% static '969.jpg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 969 FE Tractor">
                         <p><a class="btn btn-secondary details-button" href="/s969">View details &raquo;</a></p>
                     </div>
                 </article>
@@ -513,7 +513,7 @@
                         <p class="tractor-description">Swaraj 733 FE engine capacity is one to be noted in its great specifications. Swaraj 733 FE tractor in India 2023 is the best known and much recognized in the space of having qualified and sound tractors.</p>
                     </div>
                     <div class="col-md-5">
-                        <img src="static/733.jpg" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 733 FE Tractor">
+                        <img src="{% static '733.jpg' %}" class="tractor-image img-fluid mx-auto" width="500" height="500" alt="Swaraj 733 FE Tractor">
                         <p><a class="btn btn-secondary details-button" href="/s733">View details &raquo;</a></p>
                     </div>
                 </article>
