@@ -1,4 +1,4 @@
-<!doctype html>
+{% comment %} <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -52,4 +52,511 @@
         
     <p align="center" class="mt-5 mb-3 text-muted">&copy; kavleen - 2023</p>
 </body>
+</html> {% endcomment %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock title %} Saluja Swaraj Traders</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+      :root {
+        --primary-color: #2d5016;
+        --secondary-color: #f8faf6;
+        --accent-color: #ff8c00;
+        --success-color: #4a7c59;
+        --warning-color: #ffd700;
+        --earth-brown: #8b4513;
+        --forest-green: #228b22;
+        --text-dark: #2d3748;
+        --text-light: #718096;
+        --border-color: #e8f5e8;
+        --shadow: 0 4px 6px -1px rgba(45, 80, 22, 0.1);
+        --shadow-lg: 0 10px 15px -3px rgba(45, 80, 22, 0.15);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        color: var(--text-dark);
+        background: linear-gradient(135deg, #f8faf6 0%, #ffffff 100%);
+        min-height: 100vh;
+      }
+
+      /* Header Styles */
+      .main-header {
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--forest-green) 100%);
+        box-shadow: var(--shadow-lg);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 3px solid var(--accent-color);
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        color: white !important;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      }
+
+      .navbar-brand:hover {
+        color: var(--warning-color) !important;
+        transform: translateY(-1px);
+        transition: all 0.3s ease;
+      }
+
+      .navbar-brand::before {
+        content: "🚜";
+        font-size: 1.4rem;
+        filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+      }
+
+      .navbar-nav .nav-link {
+        color: rgba(255, 255, 255, 0.95) !important;
+        font-weight: 500;
+        padding: 0.75rem 1rem !important;
+        border-radius: 0.5rem;
+        margin: 0 0.25rem;
+        transition: all 0.3s ease;
+        position: relative;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      }
+
+      .navbar-nav .nav-link:hover,
+      .navbar-nav .nav-link.active {
+        color: var(--warning-color) !important;
+        background-color: rgba(255, 215, 0, 0.15);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+
+      .navbar-nav .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--accent-color), var(--warning-color));
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      .navbar-nav .nav-link:hover::after,
+      .navbar-nav .nav-link.active::after {
+        width: 80%;
+      }
+
+      .navbar-toggler {
+        border: 2px solid rgba(255, 215, 0, 0.3);
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: rgba(255, 215, 0, 0.1);
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.4);
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 215, 0, 0.9%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='m4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+      }
+
+      /* Google Translate Styling */
+      #google_translate_element {
+        background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 140, 0, 0.2));
+        border-radius: 0.5rem;
+        padding: 0.5rem;
+        margin-left: 1rem;
+        border: 1px solid rgba(255, 215, 0, 0.3);
+      }
+
+      #google_translate_element select {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 0.9rem;
+        font-weight: 500;
+      }
+
+      /* Main Content Area */
+      .main-content {
+        min-height: calc(100vh - 300px);
+        padding: 2rem 0;
+        background: linear-gradient(135deg, #f8faf6 0%, #ffffff 50%, #f0f8f0 100%);
+      }
+
+      /* Agricultural Pattern Background */
+      .main-content::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+          radial-gradient(circle at 25% 25%, rgba(45, 80, 22, 0.03) 0%, transparent 50%),
+          radial-gradient(circle at 75% 75%, rgba(34, 139, 34, 0.03) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      /* Footer Styles */
+      .main-footer {
+        background: linear-gradient(135deg, var(--earth-brown) 0%, var(--primary-color) 50%, #1a4d0a 100%);
+        color: white;
+        padding: 3rem 0 1rem;
+        margin-top: auto;
+        border-top: 4px solid var(--accent-color);
+        position: relative;
+      }
+
+      .main-footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent-color), var(--warning-color), var(--accent-color));
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .footer-section h5 {
+        color: var(--warning-color);
+        margin-bottom: 1rem;
+        font-weight: 600;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .footer-section p,
+      .footer-section a {
+        color: #e8f5e8;
+        text-decoration: none;
+        margin-bottom: 0.5rem;
+        display: block;
+        transition: all 0.3s ease;
+        padding-left: 1.5rem;
+        position: relative;
+      }
+
+      .footer-section a:hover {
+        color: var(--warning-color);
+        transform: translateX(5px);
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      }
+
+      .footer-section a::before {
+        content: '🌾';
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+
+      .footer-bottom {
+        border-top: 2px solid rgba(255, 215, 0, 0.3);
+        padding-top: 2rem;
+        text-align: center;
+        color: #cbd5e0;
+        background: rgba(0,0,0,0.1);
+        margin: 0 -15px -1rem -15px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .footer-bottom p {
+        margin: 0;
+        font-size: 0.9rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      }
+
+      /* Agricultural Icons */
+      .nav-link i.fa-home::before { content: "\f015"; }
+      .nav-link i.fa-images::before { content: "\f03e"; }
+      .nav-link i.fa-map-marker-alt::before { content: "\f3c5"; }
+
+      /* Custom Agricultural Styling */
+      .agricultural-accent {
+        background: linear-gradient(45deg, var(--success-color), var(--forest-green));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        font-weight: 600;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 991px) {
+        .navbar-nav {
+          padding-top: 1rem;
+          background: rgba(45, 80, 22, 0.1);
+          border-radius: 0.5rem;
+          margin-top: 1rem;
+        }
+
+        .navbar-nav .nav-link {
+          margin: 0.25rem 0;
+          border-radius: 0.25rem;
+        }
+
+        #google_translate_element {
+          margin-left: 0;
+          margin-top: 1rem;
+        }
+
+        .main-content {
+          padding: 1rem 0;
+        }
+      }
+
+      @media (max-width: 576px) {
+        .navbar-brand {
+          font-size: 1.25rem;
+        }
+
+        .navbar-brand::before {
+          font-size: 1.2rem;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+
+        .footer-section a {
+          padding-left: 0;
+          text-align: center;
+        }
+
+        .footer-section a::before {
+          position: static;
+          margin-right: 0.5rem;
+        }
+      }
+
+      /* Animation Classes */
+      .fade-in {
+        animation: fadeIn 0.8s ease-in;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Tractor-themed scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+
+      ::-webkit-scrollbar-track {
+        background: linear-gradient(180deg, #f8faf6, #e8f5e8);
+        border-radius: 6px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--primary-color), var(--forest-green));
+        border-radius: 6px;
+        border: 2px solid #f8faf6;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: linear-gradient(180deg, var(--forest-green), var(--success-color));
+      }
+
+      /* Additional Agricultural Elements */
+      .container-fluid {
+        position: relative;
+      }
+
+      /* Subtle agricultural pattern */
+      .pattern-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image:
+          radial-gradient(circle at 20% 80%, rgba(45, 80, 22, 0.02) 0%, transparent 50%),
+          radial-gradient(circle at 80% 20%, rgba(34, 139, 34, 0.02) 0%, transparent 50%),
+          radial-gradient(circle at 40% 40%, rgba(255, 140, 0, 0.01) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pattern-overlay"></div>
+
+    <header class="main-header">
+      <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/feedback">Saluja Swaraj Traders</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">
+                  <i class="fas fa-home me-1"></i>Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/gallery">
+                  <i class="fas fa-images me-1"></i>Gallery
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/location">
+                  <i class="fas fa-map-marker-alt me-1"></i>Location
+                </a>
+              </li>
+            </ul>
+            <div class="navbar-nav" id="google_translate_element"></div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main class="main-content fade-in">
+      <div class="container-fluid">
+        {% block body %}{% endblock body %}
+      </div>
+    </main>
+
+    <footer class="main-footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h5><i class="fas fa-seedling"></i>About Our Business</h5>
+            <p>Saluja Swaraj Traders is your trusted partner for quality agricultural and trading solutions. We are committed to supporting farmers and businesses with excellence and reliability.</p>
+          </div>
+          <div class="footer-section">
+            <h5><i class="fas fa-tractor"></i>Quick Links</h5>
+            <a href="/">🏠 Home</a>
+            <a href="/gallery">📸 Photo Gallery</a>
+            <a href="/location">📍 Our Location</a>
+            <a href="/feedback">💬 Customer Feedback</a>
+          </div>
+          <div class="footer-section">
+            <h5><i class="fas fa-phone-alt"></i>Contact Information</h5>
+            <p><i class="fas fa-envelope me-2"></i>info@salujaswarajtraders.com</p>
+            <p><i class="fas fa-phone me-2"></i>+91 7876666698</p>
+            <p><i class="fas fa-map-marker-alt me-2"></i>Ward no.13 , opposite Himway Filling station , Naraingarh , Haryana(134203)</p>
+            <p><i class="fas fa-clock me-2"></i>Mon-Sat: 9:00 AM - 6:00 PM</p>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2023 Saluja Swaraj Traders | Developed by Kavleen | Serving the Agricultural Community</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.7/dist/umd/popper.min.js" integrity="sha384-zYPOMqeu1DAVkHiLqWBUTcbYfZ8osu1Nd6Z89ify25QV9guujx43ITvfi12/QExE" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.min.js" integrity="sha384-Y4oOpwW3duJdCWv5ly8SCFYWqFDsfob/3GkgExXKV4idmbt98QcxXYs9UoXAB7BZ" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+    <script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+          pageLanguage: 'en',
+          layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL
+        }, 'google_translate_element');
+      }
+
+      function changeLanguage() {
+        var language = document.getElementById("language").value;
+        google.translate.language = language;
+        google.translate.reload();
+      }
+
+      // Enhanced smooth scrolling and active link highlighting
+      document.addEventListener('DOMContentLoaded', function() {
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+              target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          });
+        });
+
+        // Highlight active navigation link based on current page
+        const currentLocation = location.pathname;
+        const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === currentLocation) {
+            link.classList.add('active');
+          }
+        });
+
+        // Add subtle animation to footer links
+        const footerLinks = document.querySelectorAll('.footer-section a');
+        footerLinks.forEach(link => {
+          link.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateX(10px) scale(1.05)';
+          });
+          link.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateX(5px) scale(1)';
+          });
+        });
+      });
+
+      // Add seasonal greeting based on time
+      document.addEventListener('DOMContentLoaded', function() {
+        const hour = new Date().getHours();
+        const navbar = document.querySelector('.navbar-brand');
+
+        if (hour >= 5 && hour < 12) {
+          navbar.title = "Good Morning! Welcome to Saluja Swaraj Traders";
+        } else if (hour >= 12 && hour < 17) {
+          navbar.title = "Good Afternoon! Welcome to Saluja Swaraj Traders";
+        } else {
+          navbar.title = "Good Evening! Welcome to Saluja Swaraj Traders";
+        }
+      });
+    </script>
+  </body>
 </html>
