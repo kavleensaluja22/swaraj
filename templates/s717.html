@@ -51,13 +51,20 @@
     background-color: #f2f2f2;
   }
   .responsive-image {
-    max-width: 100%;     /* Don't go beyond container width */
-    width: 100%;         /* Scale down to fill container */
-    height: auto;        /* Keep aspect ratio */
-    max-width: 600px;    /* Optional: limit max size on large screens */
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    max-width: 300px;  /* smaller max size */
     display: block;
-    margin: 0 auto;      /* Center horizontally */
+    margin: 0 auto;
   }
+  
+  @media (max-width: 400px) {
+    .responsive-image {
+      max-width: 90%;
+    }
+  }
+  
   
   
 </style>
