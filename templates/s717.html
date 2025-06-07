@@ -1,22 +1,83 @@
+
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Swaraj 717{% endblock title %}
 
 {% block styles %}
 <style>
+  * {
+    box-sizing: border-box;
+  }
+
   body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #333;
   }
 
-  /* Responsive wrapper for tractor image */
+  /* Main Container */
+  .main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+  }
+
+  /* Header Section */
+  .header-section {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+
+  .main-title {
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 700;
+    color: #2d5016;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .description {
+    font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+    line-height: 1.6;
+    color: #555;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: justify;
+  }
+
+  /* Tractor Display Section */
+  .tractor-section {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #e8f5e8;
+  }
+
+  /* Fixed Responsive wrapper for tractor image */
   .tractor-image-wrapper {
     width: 100%;
     max-width: 600px;
-    margin: 0 auto;
+    margin: 0 auto 1.5rem;
     position: relative;
-    padding-top: 50%; /* Aspect ratio: 2:1 */
+    background: linear-gradient(135deg, #f8faf6, #ffffff);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(45, 80, 22, 0.15);
+    border: 2px solid #e8f5e8;
+  }
+
+  /* Aspect ratio container - Fixed for mobile */
+  .tractor-image-wrapper::before {
+    content: '';
+    display: block;
+    padding-top: 50%; /* 2:1 Aspect Ratio */
   }
 
   .tractor-image {
@@ -28,111 +89,569 @@
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
-    transition: background-image 0.3s ease-in-out;
+    transition: all 0.4s ease-in-out;
+    border-radius: 0.6rem;
   }
 
-  /* Color buttons */
+  .tractor-image:hover {
+    transform: scale(1.02);
+  }
+
+  /* Color Selector */
+  .color-selector {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .color-selector-title {
+    font-size: clamp(1rem, 3vw, 1.3rem);
+    font-weight: 600;
+    color: #2d5016;
+    margin-bottom: 1rem;
+  }
+
+  .color-buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+  }
+
   .color-button {
-    background-color: #fff;
-    border: 1px solid #ccc;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin: 10px;
+    border: 3px solid #ddd;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .color-button:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
 
   .color-button.active {
-    border: 2px solid #000;
+    border-color: #ff8c00;
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.3);
+    transform: scale(1.1);
   }
 
-  /* Specifications table */
-  table {
-    width: 90%;
-    max-width: 800px;
-    margin: 30px auto;
-    border-collapse: collapse;
+  .color-button::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: inherit;
+    border: 1px solid rgba(0,0,0,0.1);
   }
 
-  th, td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
+  /* Static Image Section */
+  .static-image-section {
+    text-align: center;
+    margin: 2rem 0;
+    padding: 1rem;
   }
 
-  th {
-    background-color: #f2f2f2;
-  }
-
-  /* Static image under selector */
   .responsive-image {
     max-width: 100%;
     height: auto;
-    display: block;
-    margin: 20px auto;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
   }
 
-  @media (max-width: 400px) {
-    .responsive-image {
-      max-width: 90%;
+  .responsive-image:hover {
+    transform: scale(1.02);
+  }
+
+  /* Specifications Section */
+  .specifications-section {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border: 1px solid #e8f5e8;
+    margin-bottom: 2rem;
+  }
+
+  .specs-title {
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: #2d5016;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Responsive Table Container */
+  .table-container {
+    overflow-x: auto;
+    border-radius: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin: 0 -0.5rem;
+  }
+
+  .specs-table {
+    width: 100%;
+    min-width: 500px; /* Minimum width to prevent cramping */
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 0.8rem;
+    overflow: hidden;
+  }
+
+  .specs-table th {
+    background: linear-gradient(135deg, #2d5016, #4a7c59);
+    color: white;
+    font-weight: 600;
+    padding: 1rem;
+    text-align: left;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    border: none;
+    white-space: nowrap;
+  }
+
+  .specs-table td {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid #e8f5e8;
+    font-size: clamp(0.8rem, 2vw, 0.95rem);
+    color: #333;
+    word-wrap: break-word;
+  }
+
+  .specs-table tr:nth-child(even) {
+    background-color: rgba(45, 80, 22, 0.02);
+  }
+
+  .specs-table tr:hover {
+    background-color: rgba(255, 140, 0, 0.05);
+  }
+
+  .specs-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* Mobile Responsive Design */
+  @media (max-width: 768px) {
+    .main-container {
+      padding: 8px;
     }
+
+    .header-section {
+      margin-bottom: 1.5rem;
+      padding: 0.8rem;
+    }
+
+    .tractor-section {
+      padding: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .tractor-image-wrapper {
+      margin-bottom: 1rem;
+    }
+
+    .color-button {
+      width: 42px;
+      height: 42px;
+    }
+
+    .color-buttons-container {
+      gap: 0.6rem;
+    }
+
+    .specifications-section {
+      padding: 1rem;
+    }
+
+    .table-container {
+      margin: 0 -0.3rem;
+    }
+
+    .specs-table {
+      min-width: 450px;
+    }
+
+    .specs-table th,
+    .specs-table td {
+      padding: 0.7rem 0.8rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main-container {
+      padding: 5px;
+    }
+
+    .header-section {
+      padding: 0.5rem;
+    }
+
+    .description {
+      padding: 0 0.5rem;
+      text-align: left;
+    }
+
+    .tractor-section {
+      padding: 0.8rem;
+      border-radius: 0.8rem;
+    }
+
+    .tractor-image-wrapper {
+      border-radius: 0.6rem;
+      border-width: 1px;
+    }
+
+    .color-button {
+      width: 38px;
+      height: 38px;
+    }
+
+    .color-buttons-container {
+      gap: 0.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .static-image-section {
+      padding: 0.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .specifications-section {
+      padding: 0.8rem;
+      border-radius: 0.8rem;
+    }
+
+    .table-container {
+      margin: 0 -0.2rem;
+      border-radius: 0.6rem;
+    }
+
+    .specs-table {
+      min-width: 400px;
+    }
+
+    .specs-table th,
+    .specs-table td {
+      padding: 0.6rem 0.7rem;
+      font-size: 0.85rem;
+    }
+
+    .specs-table th {
+      font-size: 0.9rem;
+    }
+  }
+
+  @media (max-width: 360px) {
+    .main-container {
+      padding: 3px;
+    }
+
+    .tractor-section {
+      padding: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .tractor-image-wrapper {
+      margin-bottom: 0.8rem;
+    }
+
+    .color-button {
+      width: 35px;
+      height: 35px;
+    }
+
+    .color-buttons-container {
+      gap: 0.4rem;
+    }
+
+    .specifications-section {
+      padding: 0.6rem;
+    }
+
+    .table-container {
+      margin: 0 -0.1rem;
+    }
+
+    .specs-table {
+      min-width: 350px;
+    }
+
+    .specs-table th,
+    .specs-table td {
+      padding: 0.5rem 0.6rem;
+      font-size: 0.8rem;
+    }
+
+    .responsive-image {
+      max-width: 98%;
+    }
+  }
+
+  /* Very small screens */
+  @media (max-width: 320px) {
+    .specs-table {
+      min-width: 320px;
+    }
+
+    .specs-table th,
+    .specs-table td {
+      padding: 0.4rem 0.5rem;
+      font-size: 0.75rem;
+    }
+
+    .color-button {
+      width: 32px;
+      height: 32px;
+    }
+
+    .color-button::after {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  /* Large screens optimization */
+  @media (min-width: 1024px) {
+    .main-container {
+      padding: 20px;
+    }
+
+    .tractor-section {
+      padding: 2rem;
+    }
+
+    .specifications-section {
+      padding: 2rem;
+    }
+
+    .table-container {
+      margin: 0;
+    }
+
+    .specs-table {
+      min-width: auto;
+    }
+  }
+
+  /* Animation Classes */
+  .fade-in {
+    animation: fadeInUp 0.6s ease-out;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Loading state for images */
+  .loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: loading 1.5s infinite;
+  }
+
+  @keyframes loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
 </style>
 {% endblock %}
 
 {% block body %}
-<h1 align="center">Swaraj 717</h1>
-<p style="padding: 0 20px; max-width: 900px; margin: auto;">
-  Swaraj 717 is the latest value-for-money offering from Swaraj in the sub-20hp (14.91 kW) category. 
-  This best-in-class tractor redefines a farmer’s life. It offers solid performance in using implements like rotavator, cultivator, 
-  spraying, haulage, sowing, reaper, threshing and across multiple crops like grapes, groundnut, cotton, castor etc. 
-  It is easy to maintain and highly reliable to use.
-</p>
+<div class="main-container fade-in">
+  <!-- Header Section -->
+  <section class="header-section">
+    <h1 class="main-title">🚜 Swaraj 717</h1>
+    <p class="description">
+      Swaraj 717 is the latest value-for-money offering from Swaraj in the sub-20hp (14.91 kW) category.
+      This best-in-class tractor redefines a farmer's life. It offers solid performance in using implements like rotavator, cultivator,
+      spraying, haulage, sowing, reaper, threshing and across multiple crops like grapes, groundnut, cotton, castor etc.
+      It is easy to maintain and highly reliable to use.
+    </p>
+  </section>
 
-<!-- Tractor Image -->
-<div class="tractor-image-wrapper">
-  <div class="tractor-image" id="tractor-image" style="background-image: url('https://i.imgur.com/jMvRYHx.png');"></div>
+  <!-- Tractor Display Section -->
+  <section class="tractor-section">
+    <!-- Tractor Image -->
+    <div class="tractor-image-wrapper">
+      <div class="tractor-image" id="tractor-image" style="background-image: url('https://i.imgur.com/jMvRYHx.png');" aria-label="Swaraj 717 Tractor"></div>
+    </div>
+
+    
+  </section>
+
+  <!-- Static Product Image -->
+  <section class="static-image-section">
+    <img src="{% static '717.jpg' %}" alt="Swaraj 717 Detailed View" class="responsive-image">
+  </section>
+
+  <!-- Specifications -->
+  <section class="specifications-section">
+    <h2 class="specs-title">⚙️ Technical Specifications</h2>
+    <div class="table-container">
+      <table class="specs-table">
+        <thead>
+          <tr>
+            <th>Specification</th>
+            <th>Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><th>No. of Cylinder</th><td>1</td></tr>
+          <tr><th>Engine</th><td>Displacement: 725cc</td></tr>
+          <tr><th>Power</th><td>11.18 kW (15 HP) at 2300 rpm</td></tr>
+          <tr><th>Transmission</th><td>8 Forward + 2 Reverse</td></tr>
+          <tr><th>Brakes</th><td>Dry Disc Brakes</td></tr>
+          <tr><th>Clutch</th><td>Single clutch, Diaphragm type</td></tr>
+          <tr><th>PTO</th><td>Non-Independent, 6 splines PTO at 540 rpm</td></tr>
+          <tr><th>Hydraulics</th><td>Lift capacity: 780 kgf at lower link ends</td></tr>
+          <tr><th>Fuel Tank Capacity</th><td>19 Litres</td></tr>
+          <tr><th>Dimensions</th><td>Length: 2,750 mm, Width: 1,120 mm, Height: 1,320 mm</td></tr>
+          <tr><th>Wheelbase</th><td>1,650 mm</td></tr>
+          <tr><th>Tyre Size</th><td>Front Tyre: 5.00 x 15, Rear Tyre: 8.0 x 18</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </div>
 
-<!-- Color Buttons -->
-<div style="display: flex; justify-content: center;">
-  <div class="color-button active" style="background-color: #fff" onclick="changeImage('https://i.imgur.com/jMvRYHx.png', this)"></div>
-  <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png', this)"></div>
-  <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png', this)"></div>
-</div>
-
-<!-- Static Image -->
-<div align="center">
-  <img src="{% static '717.jpg' %}" alt="Swaraj 717" class="responsive-image">
-</div>
-
-<!-- Specifications -->
-<h2 align="center">Specifications</h2>
-<table>
-  <tr><th>No. of Cylinder</th><td>1</td></tr>
-  <tr><th>Engine</th><td>Displacement: 725cc</td></tr>
-  <tr><th>Power</th><td>11.18 kW (15 HP) at 2300 rpm</td></tr>
-  <tr><th>Transmission</th><td>8 Forward + 2 Reverse</td></tr>
-  <tr><th>Brakes</th><td>Dry Disc Brakes</td></tr>
-  <tr><th>Clutch</th><td>Single clutch, Diaphragm type</td></tr>
-  <tr><th>PTO</th><td>Non-Independent, 6 splines PTO at 540 rpm</td></tr>
-  <tr><th>Hydraulics</th><td>Lift capacity: 780 kgf at lower link ends</td></tr>
-  <tr><th>Fuel Tank Capacity</th><td>19 Litres</td></tr>
-  <tr><th>Dimensions</th><td>Length: 2,750 mm, Width: 1,120 mm, Height: 1,320 mm</td></tr>
-  <tr><th>Wheelbase</th><td>1,650 mm</td></tr>
-  <tr><th>Tyre Size</th><td>Front Tyre: 5.00 x 15, Rear Tyre: 8.0 x 18</td></tr>
-</table>
-
-<!-- JavaScript -->
+<!-- Enhanced JavaScript -->
 <script>
   function changeImage(imageUrl, buttonElement) {
-    document.getElementById("tractor-image").style.backgroundImage = "url('" + imageUrl + "')";
+    const tractorImage = document.getElementById("tractor-image");
     const buttons = document.getElementsByClassName("color-button");
+
+    // Add loading state
+    tractorImage.classList.add('loading');
+
+    // Remove active class from all buttons
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("active");
     }
+
+    // Add active class to clicked button
     buttonElement.classList.add("active");
+
+    // Preload image for smooth transition
+    const img = new Image();
+    img.onload = function() {
+      setTimeout(() => {
+        tractorImage.style.backgroundImage = "url('" + imageUrl + "')";
+        tractorImage.classList.remove('loading');
+      }, 200);
+    };
+    img.onerror = function() {
+      // Handle image load error
+      tractorImage.classList.remove('loading');
+      console.error('Failed to load image:', imageUrl);
+    };
+    img.src = imageUrl;
   }
+
+  // Enhanced accessibility and mobile optimization
+  document.addEventListener('DOMContentLoaded', function() {
+    // Add keyboard navigation for color buttons
+    const colorButtons = document.querySelectorAll('.color-button');
+
+    colorButtons.forEach((button, index) => {
+      // Make buttons focusable
+      button.setAttribute('tabindex', '0');
+
+      button.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          button.click();
+        }
+
+        if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+          e.preventDefault();
+          const nextIndex = (index + 1) % colorButtons.length;
+          colorButtons[nextIndex].focus();
+        }
+
+        if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+          e.preventDefault();
+          const prevIndex = (index - 1 + colorButtons.length) % colorButtons.length;
+          colorButtons[prevIndex].focus();
+        }
+      });
+    });
+
+    // Optimize for touch devices
+    if ('ontouchstart' in window) {
+      colorButtons.forEach(button => {
+        button.addEventListener('touchstart', function() {
+          this.style.transform = 'scale(0.95)';
+        });
+
+        button.addEventListener('touchend', function() {
+          setTimeout(() => {
+            this.style.transform = '';
+          }, 150);
+        });
+      });
+    }
+
+    // Handle orientation change
+    window.addEventListener('orientationchange', function() {
+      setTimeout(() => {
+        // Force reflow to fix any layout issues
+        document.body.style.display = 'none';
+        document.body.offsetHeight; // Trigger reflow
+        document.body.style.display = '';
+      }, 100);
+    });
+
+    // Intersection Observer for performance
+    if ('IntersectionObserver' in window) {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '50px'
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }
+        });
+      }, observerOptions);
+
+      // Observe sections for scroll animations
+      document.querySelectorAll('.tractor-section, .static-image-section, .specifications-section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(20px)';
+        section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(section);
+      });
+    }
+  });
+
+  // Handle window resize for responsive adjustments
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      // Any resize-specific adjustments can go here
+      console.log('Window resized, layout adjusted');
+    }, 250);
+  });
 </script>
 {% endblock body %}
