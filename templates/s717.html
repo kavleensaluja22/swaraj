@@ -10,19 +10,28 @@
     overflow-x: hidden;
   }
 
-  /* Responsive tractor image container */
-  .tractor-image {
+  /* Responsive wrapper for tractor image */
+  .tractor-image-wrapper {
     width: 100%;
     max-width: 600px;
-    height: 300px;
     margin: 0 auto;
+    position: relative;
+    padding-top: 50%; /* Aspect ratio: 2:1 */
+  }
+
+  .tractor-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     transition: background-image 0.3s ease-in-out;
   }
 
-  /* Color selection buttons */
+  /* Color buttons */
   .color-button {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -38,7 +47,7 @@
     border: 2px solid #000;
   }
 
-  /* Table styling */
+  /* Specifications table */
   table {
     width: 90%;
     max-width: 800px;
@@ -56,11 +65,10 @@
     background-color: #f2f2f2;
   }
 
-  /* Responsive image (static image below selector) */
+  /* Static image under selector */
   .responsive-image {
     max-width: 100%;
     height: auto;
-    max-width: 300px;
     display: block;
     margin: 20px auto;
   }
@@ -83,21 +91,23 @@
 </p>
 
 <!-- Tractor Image -->
-<div class="tractor-image" id="tractor-image" style="background-image: url('https://i.imgur.com/jMvRYHx.png');"></div>
+<div class="tractor-image-wrapper">
+  <div class="tractor-image" id="tractor-image" style="background-image: url('https://i.imgur.com/jMvRYHx.png');"></div>
+</div>
 
-<!-- Color selection -->
+<!-- Color Buttons -->
 <div style="display: flex; justify-content: center;">
   <div class="color-button active" style="background-color: #fff" onclick="changeImage('https://i.imgur.com/jMvRYHx.png', this)"></div>
   <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png', this)"></div>
   <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png', this)"></div>
 </div>
 
-<!-- Static image -->
+<!-- Static Image -->
 <div align="center">
   <img src="{% static '717.jpg' %}" alt="Swaraj 717" class="responsive-image">
 </div>
 
-<!-- Specifications Table -->
+<!-- Specifications -->
 <h2 align="center">Specifications</h2>
 <table>
   <tr><th>No. of Cylinder</th><td>1</td></tr>
@@ -114,12 +124,12 @@
   <tr><th>Tyre Size</th><td>Front Tyre: 5.00 x 15, Rear Tyre: 8.0 x 18</td></tr>
 </table>
 
+<!-- JavaScript -->
 <script>
-  // Change tractor image and toggle active button
   function changeImage(imageUrl, buttonElement) {
     document.getElementById("tractor-image").style.backgroundImage = "url('" + imageUrl + "')";
-    var buttons = document.getElementsByClassName("color-button");
-    for (var i = 0; i < buttons.length; i++) {
+    const buttons = document.getElementsByClassName("color-button");
+    for (let i = 0; i < buttons.length; i++) {
       buttons[i].classList.remove("active");
     }
     buttonElement.classList.add("active");
