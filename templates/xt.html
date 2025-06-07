@@ -1,28 +1,23 @@
+
 {% extends 'base.html' %}
 {% load static %}
-{% block title %}xt{% endblock title %}
+{% block title %}xt{% endblock title%}
 
 {% block styles %}
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-
-  /* Responsive tractor image container */
+  /* Styles for the tractor images */
   .tractor-image {
-    width: 100%;
-    max-width: 600px;
-    aspect-ratio: 4 / 3;
-    margin: 0 auto;
-    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     transition: background-image 0.3s ease-in-out;
   }
 
-  /* Color selection buttons */
+  /* Styles for the tractor color buttons */
   .color-button {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -31,25 +26,17 @@
     height: 40px;
     margin: 10px;
     cursor: pointer;
-    transition: border 0.3s ease-in-out;
+    transition: background-color 0.3s ease-in-out;
   }
 
+  /* Styles for the active tractor color button */
   .color-button.active {
-    border: 2px solid #000;
+    border: 1px solid #000;
   }
 
-  /* Image below the selector */
-  .responsive-static-image {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-  }
-
-  /* Table styling */
+  /* Styles for the table */
   table {
-    width: 90%;
-    max-width: 800px;
+    width: 50%;
     margin: 30px auto;
     border-collapse: collapse;
   }
@@ -63,68 +50,88 @@
   th {
     background-color: #f2f2f2;
   }
-
-  @media (max-width: 600px) {
-    .color-button {
-      width: 30px;
-      height: 30px;
-      margin: 5px;
-    }
-  }
 </style>
-{% endblock %}
+{% endblock  %}
 
 {% block body %}
 
-<h1 align="center">Swaraj 744 XT</h1>
-<p style="padding: 0 20px; max-width: 900px; margin: auto;">
-  Swaraj 744 XT comes with all new powerful and fuel efficient engine with highest displacement and torque in its category.
-  With features like Directional control valve and 1700 kg lift capacity, it works efficiently with implements such as laser leveler, MB Plough and Tipping trolley.
-</p>
+  <h1 align="center">Swaraj 744 XT</h1>
+  <p>Swaraj 744 XT comes with all new powerful and fuel efficient engine with highest displacement and torque in its category. With features like Directional control valve and 1700 kg lift capacity, it works efficiently with implements such as laser leveler, MB Plough and Tipping trolley.</p>
 
-<!-- Tractor Image -->
-<div class="tractor-image" id="tractor-image" style="background-image: url('https://i.imgur.com/jMvRYHx.png');"></div>
+  <div class="tractor-image" id="tractor-image">
+    <!-- Default image -->
+    <div style="background-image: url('https://i.imgur.com/jMvRYHx.png')"></div>
+  </div>
+  <div class="item-box" </div>
 
-<!-- Color selection -->
-<div style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <div class="color-button active" style="background-color: #fff" onclick="changeImage('https://i.imgur.com/jMvRYHx.png', this)"></div>
-  <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png', this)"></div>
-  <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png', this)"></div>
-</div>
+  <div style="display: flex; justify-content: center;">
+    <div class="color-button active" style="background-color: #fff" onclick="changeImage('https://i.imgur.com/jMvRYHx.png')"></div>
+    <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png')"></div>
+    <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png')"></div>
+  </div>
+  <div align="center" ><img src ="  {% static 'xt.jpg' %}"> </div>
 
-<!-- Static image -->
-<div>
-  <img src="{% static 'xt.jpg' %}" alt="Swaraj 744 XT" class="responsive-static-image">
-</div>
 
-<h2 align="center">Specifications</h2>
-<table>
-  <tr><th>No. of Cylinder</th><td>3</td></tr>
-  <tr><th>Engine RPM</th><td>2000 r/min</td></tr>
-  <tr><th>Power</th><td>37.28 kW (50 HP)</td></tr>
-  <tr><th>Transmission</th>
-    <td>
-      Type - Combination of Constant & Sliding Mesh<br>
-      H1 / HR Inline - Yes<br>
-      Gear Levers Position - Center<br>
-      Final Drive - Bull Gear
-    </td>
-  </tr>
-  <tr><th>Clutch</th><td>Dual</td></tr>
-  <tr><th>PTO</th><td>540 / 1000 r/min @ erpm – 540 r/min</td></tr>
-  <tr><th>Fuel Injection Pump</th><td>Inline</td></tr>
-  <tr><th>Tyre Size</th><td>Front - 6.00x16 (7.50x16 optional), Rear - 14.9x28</td></tr>
-</table>
+  <h2 >Specifications</h2>
 
-<script>
-  function changeImage(imageUrl, buttonElement) {
-    document.getElementById("tractor-image").style.backgroundImage = "url('" + imageUrl + "')";
-    const buttons = document.getElementsByClassName("color-button");
-    for (let i = 0; i < buttons.length; i++) {
-      buttons[i].classList.remove("active");
-    }
-    buttonElement.classList.add("active");
-  }
-</script>
+  <table  border="1" style="border-collapse: collapse;" margin="50" padding="50">
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">No. of Cylinder</th>
+      <td style="padding: 10px;">3</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Engine RPM</th>
+      <td style="padding: 10px;">2000 r/min</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Power</th>
+      <td style="padding: 10px;">37.28 kW (50 HP)
 
-{% endblock body %}
+      </td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Transmission</th>
+      <td style="padding: 10px;">Type - Combination of Constant & sliding mesh
+        H1 / HR inline (Yes / No) - Yes
+        Gear levers position (Centre / Side Shift) - Center
+        Final Drive - Bull Gear</td>
+    </tr>
+   
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Clutch</th>
+      <td style="padding: 10px;">Dual</td>
+    </tr>
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">PTO</th>
+      <td style="padding: 10px;">540 / 1000 r/min @ erpm – 540 r/min</td>
+    </tr>
+    
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Fuel Injection Pump </th>
+      <td style="padding: 10px;"> Inline</td>
+    </tr>
+ 
+   
+    <tr>
+      <th style="background-color: lightgray; padding: 10px;">Tyre Size</th>
+      <td style="padding: 10px;">Front - 6.00*16 (7.50 * 16 optional)
+        Rear 14.9*28</td>
+    </tr>
+    
+  </table>
+  
+          <script>
+            // Function to change the tractor image based on the color button clicked
+            function changeImage(imageUrl) {
+              document.getElementById("tractor-image").style.backgroundImage = "url('" + imageUrl + "')";
+              // Remove active class from all color buttons
+              var colorButtons = document.getElementsByClassName("color-button");
+              for (var i = 0; i < colorButtons.length; i++) {
+                colorButtons[i].classList.remove("active");
+              }
+              // Add active class to the clicked color button
+              event.target.classList.add("active");
+            }
+          </script>
+          <div class="item-box" style="background-image: url(https://www.swarajtractors.com/sites/default/files/images/Swaraj%20Tractors_717_633x512.png)"></div>
+          {% endblock body %}
