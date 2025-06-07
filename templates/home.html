@@ -1613,8 +1613,53 @@
             word-wrap: break-word;
         }
     }
-    
+    /* Ultra Small Devices (≤400px) */
+@media (max-width: 400px) {
+    .hero-section {
+        min-height: auto;
+        padding: 20px 10px;
+    }
+
+    .hero-content {
+        padding: 5px 0;
+    }
+
+    .hero-text {
+        margin-bottom: 20px;
+        font-size: 1rem;
+    }
+
     .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 👈 Force 3 columns */
+        gap: 12px;
+        max-width: 100%;
+    }
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;  /* 👈 Stack contents vertically inside each stat */
+        align-items: center;
+        justify-content: center;
+        padding: 12px 8px;
+        text-align: center;
+        gap: 6px;
+    }
+
+    .stat-item i {
+        font-size: 1.2rem;
+    }
+
+    .stat-number {
+        font-size: 1.1rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+}
+
+    {% comment %} .hero-stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
@@ -1634,7 +1679,7 @@
         padding: 0 12px;
         max-width: 100%;
         box-sizing: border-box;
-      }
+      } {% endcomment %}
                   
     
  </style>
