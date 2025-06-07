@@ -470,6 +470,28 @@
     0% { background-position: 200% 0; }
     100% { background-position: -200% 0; }
   }
+
+  .static-image-section {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    padding: 0 10px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+
+  .static-image-section .responsive-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: inline-block;
+  }
+
+  @media (max-width: 600px) {
+    .static-image-section {
+      padding: 0 5px;
+    }
+  }
 </style>
 {% endblock %}
 
@@ -500,7 +522,6 @@
   <section class="static-image-section">
     <img src="{% static '717.jpg' %}" alt="Swaraj 717 Detailed View" class="responsive-image">
   </section>
-
   <!-- Specifications -->
   <section class="specifications-section">
     <h2 class="specs-title">⚙️ Technical Specifications</h2>
