@@ -4,24 +4,21 @@
 
 {% block styles %}
 <style>
+  /* Responsive styles for the tractor images container */
   .tractor-image {
-    width: 100%;
-    max-width: 700px;
-    height: 400px;
-    margin: auto;
-    background-size: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 400px; /* Reduced height for better mobile fit */
+    max-width: 100%;
+    background-size: contain; /* Use contain to fit image inside */
     background-position: center;
     background-repeat: no-repeat;
     transition: background-image 0.3s ease-in-out;
+    margin: 0 auto;
   }
 
-  .color-options {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin: 20px 0;
-  }
-
+  /* Color buttons styling */
   .color-button {
     background-color: #fff;
     border: 1px solid #ccc;
@@ -30,13 +27,22 @@
     height: 40px;
     margin: 10px;
     cursor: pointer;
-    transition: border 0.3s;
+    transition: background-color 0.3s ease-in-out;
   }
 
   .color-button.active {
     border: 2px solid #000;
   }
 
+  /* Responsive image below the color buttons */
+  .responsive-image {
+    max-width: 90%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+  }
+
+  /* Table styles */
   table {
     width: 90%;
     max-width: 700px;
@@ -45,7 +51,7 @@
   }
 
   th, td {
-    padding: 12px;
+    padding: 10px;
     border: 1px solid #ccc;
     text-align: left;
   }
@@ -54,73 +60,123 @@
     background-color: #f2f2f2;
   }
 
-  img.responsive {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto;
-  }
-
+  /* Responsive tweaks */
   @media (max-width: 768px) {
     .tractor-image {
-      height: 250px;
+      height: 300px;
     }
-
-    .color-button {
-      width: 30px;
-      height: 30px;
-      margin: 5px;
-    }
-
     table {
+      width: 100%;
       font-size: 14px;
+    }
+    .color-button {
+      width: 35px;
+      height: 35px;
+      margin: 8px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .tractor-image {
+      height: 200px;
+    }
+    h1, h2 {
+      font-size: 1.5em;
+    }
+    p {
+      padding: 0 10px;
+      font-size: 14px;
+    }
+    table th, table td {
+      padding: 6px;
+      font-size: 12px;
     }
   }
 </style>
-{% endblock %}
+{% endblock  %}
 
 {% block body %}
-<h1 style="text-align: center;">Swaraj 717</h1>
-<p style="max-width: 800px; margin: auto; padding: 10px;">
-  Swaraj 717 is the latest value-for-money offering from Swaraj in the sub-20hp (14.91 kW) category. This best-in-class tractor redefines a farmer’s life...
-</p>
 
-<div class="tractor-image" id="tractor-image" style="background-image: url('https://i.imgur.com/jMvRYHx.png');"></div>
+  <h1 align="center">Swaraj 717</h1>
+  <p>Swaraj 717 is the latest value-for-money offering from Swaraj in the sub-20hp (14.91 kW) category. This best-in-class tractor redefines a farmer’s life. It offers solid performance in using implements like rotavator, cultivator, spraying, haulage, sowing, reaper, threshing and across multiple crops like grapes, groundnut, cotton, castor etc. It is easy to maintain and highly reliable to use.</p>
 
-<div class="color-options">
-  <div class="color-button active" style="background-color: #fff" onclick="changeImage('https://i.imgur.com/jMvRYHx.png', this)"></div>
-  <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png', this)"></div>
-  <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png', this)"></div>
-</div>
+  <div class="tractor-image" id="tractor-image" style="background-image: url('https://i.imgur.com/jMvRYHx.png');">
+    <!-- Background image set inline -->
+  </div>
 
-<img src="{% static '717.jpg' %}" class="responsive" alt="Swaraj 717 Image">
+  <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <div class="color-button active" style="background-color: #fff" onclick="changeImage('https://i.imgur.com/jMvRYHx.png', this)"></div>
+    <div class="color-button" style="background-color: #f00" onclick="changeImage('https://i.imgur.com/rm4TG4s.png', this)"></div>
+    <div class="color-button" style="background-color: #00f" onclick="changeImage('https://i.imgur.com/XfsU0as.png', this)"></div>
+  </div>
 
-<h2 style="text-align: center;">Specifications</h2>
+  <img src="{% static '717.jpg' %}" alt="Swaraj 717" class="responsive-image">
 
-<table>
-  <tr><th>No. of Cylinder</th><td>1</td></tr>
-  <tr><th>Engine</th><td>Displacement: 725cc</td></tr>
-  <tr><th>Power</th><td>11.18 kW (15 HP) at 2300 rpm</td></tr>
-  <tr><th>Transmission</th><td>8 Forward + 2 Reverse</td></tr>
-  <tr><th>Brakes</th><td>Dry Disc Brakes</td></tr>
-  <tr><th>Clutch</th><td>Single clutch, Diaphragm type</td></tr>
-  <tr><th>PTO</th><td>Non-Independent, 6 splines PTO at 540 rpm</td></tr>
-  <tr><th>Hydraulics</th><td>Lift capacity: 780 kgf at lower link ends</td></tr>
-  <tr><th>Fuel Tank Capacity</th><td>19 Litres</td></tr>
-  <tr><th>Dimensions</th><td>Length: 2,750 mm, Width: 1,120 mm, Height: 1,320 mm</td></tr>
-  <tr><th>Wheelbase</th><td>1,650 mm</td></tr>
-  <tr><th>Tyre Size</th><td>Front Tyre: 5.00 x 15, Rear Tyre: 8.0 x 18</td></tr>
-</table>
+  <h2>Specifications</h2>
 
-<script>
-  function changeImage(imageUrl, buttonElement) {
-    document.getElementById("tractor-image").style.backgroundImage = "url('" + imageUrl + "')";
-    var buttons = document.getElementsByClassName("color-button");
-    for (var i = 0; i < buttons.length; i++) {
-      buttons[i].classList.remove("active");
+  <table border="1">
+    <tr>
+      <th>No. of Cylinder</th>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>Engine</th>
+      <td>Displacement: 725cc</td>
+    </tr>
+    <tr>
+      <th>Power</th>
+      <td>11.18 kW (15 HP) at 2300 rpm</td>
+    </tr>
+    <tr>
+      <th>Transmission</th>
+      <td>8 Forward + 2 Reverse</td>
+    </tr>
+    <tr>
+      <th>Brakes</th>
+      <td>Dry Disc Brakes</td>
+    </tr>
+    <tr>
+      <th>Clutch</th>
+      <td>Single clutch, Diaphragm type</td>
+    </tr>
+    <tr>
+      <th>PTO</th>
+      <td>Non-Independent, 6 splines PTO at 540 rpm</td>
+    </tr>
+    <tr>
+      <th>Hydraulics</th>
+      <td>Lift capacity: 780 kgf at lower link ends</td>
+    </tr>
+    <tr>
+      <th>Fuel Tank Capacity</th>
+      <td>19 Litres</td>
+    </tr>
+    <tr>
+      <th>Dimensions</th>
+      <td>Length: 2,750 mm, Width: 1,120 mm, Height: 1,320 mm</td>
+    </tr>
+    <tr>
+      <th>Wheelbase</th>
+      <td>1,650 mm</td>
+    </tr>
+    <tr>
+      <th>Tyre Size</th>
+      <td>Front Tyre: 5.00 x 15, Rear Tyre: 8.0 x 18</td>
+    </tr>
+  </table>
+  
+  <script>
+    // Function to change the tractor image based on the color button clicked
+    function changeImage(imageUrl, elem) {
+      document.getElementById("tractor-image").style.backgroundImage = "url('" + imageUrl + "')";
+      // Remove active class from all color buttons
+      var colorButtons = document.getElementsByClassName("color-button");
+      for (var i = 0; i < colorButtons.length; i++) {
+        colorButtons[i].classList.remove("active");
+      }
+      // Add active class to the clicked color button
+      elem.classList.add("active");
     }
-    buttonElement.classList.add("active");
-  }
-</script>
+  </script>
 
-{% endblock %}
+{% endblock body %}
